@@ -22,7 +22,7 @@ class BooksAuthorsTable extends Main\Entity\DataManager
 {
     public static function getTableName()
     {
-        return 'books_authors';
+        return 'test_books_authors';
     }
 
     public static function getMap()
