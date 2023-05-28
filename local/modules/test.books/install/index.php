@@ -4,6 +4,9 @@ use Bitrix\Main\Application;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
+use Test\Books\AuthorsTable;
+use Test\Books\BooksAuthorsTable;
+use Test\Books\BooksTable;
 
 Loc::loadMessages(__FILE__);
 
@@ -32,10 +35,33 @@ class test_books extends CModule
     public function doInstall()
     {
         ModuleManager::registerModule($this->MODULE_ID);
+        $this->installDB();
     }
 
     public function doUninstall()
     {
+        $this->uninstallDB();
         ModuleManager::unRegisterModule($this->MODULE_ID);
+    }
+
+    public function installDB()
+    {
+        if (Loader::includeModule($this->MODULE_ID))
+        {
+            BooksTable::getEntity()->createDbTable();
+            AuthorsTable::getEntity()->createDbTable();
+            BooksAuthorsTable::getEntity()->createDbTable();
+        }
+    }
+
+    public function uninstallDB()
+    {
+        if (Loader::includeModule($this->MODULE_ID))
+        {
+            $connection = Application::getInstance()->getConnection();
+            $connection->dropTable(BooksTable::getTableName());
+            $connection->dropTable(AuthorsTable::getTableName());
+            $connection->dropTable(BooksAuthorsTable::getTableName());
+        }
     }
 }
