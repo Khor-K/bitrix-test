@@ -1,13 +1,9 @@
 <?php
 
-use Bitrix\Main\Entity\ReferenceField;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Grid\Options as GridOptions;
-use Bitrix\Main\ORM\Fields\ExpressionField;
 use Bitrix\Main\UI\Filter\Options as FilterOptions;
 use Bitrix\Main\UI\PageNavigation;
-use Test\Books\AuthorsTable;
-use Test\Books\BooksTable;
 use Test\Books\FilterGridController;
 
 class BooksAuthorsComponent extends CBitrixComponent
