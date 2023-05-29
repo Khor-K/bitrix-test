@@ -7,17 +7,6 @@ use Bitrix\Main,
 
 Loc::loadMessages(__FILE__);
 
-/**
- * Class BooksAuthorsTable
- *
- * Fields:
- * <ul>
- * <li> ID int mandatory
- * <li> BOOK_ID int mandatory
- * <li> AUTHOR_ID int mandatory
- * </ul>
- *
- */
 class BooksAuthorsTable extends Main\Entity\DataManager
 {
     public static function getTableName()
